@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Category : IEntitiy
+    public class Category : Abstract.IEntitiy
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }

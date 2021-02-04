@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Business.Concrete
+namespace DataAccess.Concrete
 {
     public class ProductManager : IProductService
     {
@@ -22,5 +22,21 @@ namespace Business.Concrete
             return _productDal.GetAll();
         }
 
+        public List<Product> GetAllByCategoryId(int Id)
+        {
+            return _productDal.GetAll(p => p.CategoryId == Id);
+        }
+
+        public List<Product> GetByUnitPrice(int min, int max)
+        {
+            return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);
+
+        }
+
+
+        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
