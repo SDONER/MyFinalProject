@@ -1,15 +1,15 @@
-﻿
-using Business.Abstract;
-using Entities.Abstract;
+﻿using Business.Abstract;
+using Core.DataAccess;
+using Core.DataAccess.EntitiyFramework;
+using DataAccess.Concrete.EntitiyFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess.Abstract
+namespace DataAccess.Concrate.EntityFaramework
 {
-    public interface ICategoryDal : IEntityRepostory<Category>
+    public class EfCategoryDal : EfEntityRepositoryBase<Category, NorthwindContext>, ICategoryDal
     {
-
     }
 }

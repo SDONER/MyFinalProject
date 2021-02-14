@@ -1,14 +1,17 @@
-﻿using Entities.Concrete;
+﻿using Core.DataAccess;
+using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IProductDal:IEntityRepostory<Product>
+    public interface IProductDal:IEntityRepository<Product>
     {
-       // List<Product> GetAll();
+        List<ProductDetailDto> GetProductDetails();
+        // List<Product> GetAll();
 
-       // List<T> GetAll(Expression<Func<T, bool>> filter = null);
+        // List<T> GetAll(Expression<Func<T, bool>> filter = null);
     }
 }

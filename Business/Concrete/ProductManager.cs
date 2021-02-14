@@ -2,11 +2,12 @@
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess.Concrete
+namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
@@ -27,16 +28,14 @@ namespace DataAccess.Concrete
             return _productDal.GetAll(p => p.CategoryId == Id);
         }
 
-        public List<Product> GetByUnitPrice(int min, int max)
-        {
-            return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);
-
-        }
-
-
         public List<Product> GetByUnitPrice(decimal min, decimal max)
         {
-            throw new NotImplementedException();
+            return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);
+        }
+
+        public List<ProductDetailDto> GetProductDetails()
+        {
+            return _productDal.GetProductDetails();
         }
     }
 }
