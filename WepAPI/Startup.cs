@@ -42,6 +42,7 @@ namespace WepAPI
             //AOP
             //Postsharp
             services.AddControllers();
+            services.AddCors();
             //services.AddSingleton<IProductService,ProductManager>();
             //services.AddSingleton<IProductDal, EfProductDal>();
 
@@ -76,6 +77,8 @@ namespace WepAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:58848").AllowAnyHeader().AllowAnyOrigin());
 
             app.UseHttpsRedirection();
 

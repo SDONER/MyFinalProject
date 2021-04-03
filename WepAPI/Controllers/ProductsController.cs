@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WepAPI.Controllers
@@ -29,13 +30,15 @@ namespace WepAPI.Controllers
         {
             {
                 //Dependency chain -- Bağımlılık (Yukarıda Consractor İnjection yapıldı)
+                //Thread.Sleep(1000); // 10 sn. gecikme
+
                 var result = _productService.GetAll();
                 //swagger
                 if (result.Success)
                 {
-                    return Ok(result.Data);
+                    return Ok(result);
                 }
-                return BadRequest(result.Message);
+                return BadRequest(result);
 
             }
 
@@ -45,6 +48,17 @@ namespace WepAPI.Controllers
         public IActionResult GetById(int Id)
         {
             var result = _productService.GetById(Id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbycategory")]
+        public IActionResult GetByCategory(int categoryId)
+        {
+            var result = _productService.GetAllByCategoryId(categoryId);
             if (result.Success)
             {
                 return Ok(result);
